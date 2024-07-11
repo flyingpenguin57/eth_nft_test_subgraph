@@ -22,3 +22,15 @@ type OwnershipTransferred @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type TokenInfo @entity {
+  id: ID!
+  ca: Bytes! # address
+  tokenId: BigInt! # uint256
+  tokenURL: String!
+  name: String!
+  owner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

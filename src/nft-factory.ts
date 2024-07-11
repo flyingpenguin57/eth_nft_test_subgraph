@@ -8,6 +8,7 @@ import {
   NFTRegesitered,
   OwnershipTransferred
 } from "../generated/schema"
+import { S2NFT } from "../generated/templates"
 
 export function handleNFTCreated(event: NFTCreatedEvent): void {
   let entity = new NFTCreated(
@@ -20,6 +21,7 @@ export function handleNFTCreated(event: NFTCreatedEvent): void {
   entity.transactionHash = event.transaction.hash
 
   entity.save()
+  S2NFT.create(event.params.nftCA)     
 }
 
 export function handleNFTRegesitered(event: NFTRegesiteredEvent): void {

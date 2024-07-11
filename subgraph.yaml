@@ -10,7 +10,7 @@ dataSources:
     source:
       address: "0x9e72881669c7b39d4283B3ce11922C248B2c5755"
       abi: NFTFactory
-      startBlock: 5766033
+      startBlock: 6283125
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -30,3 +30,24 @@ dataSources:
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
       file: ./src/nft-factory.ts
+
+templates:
+  - name: S2NFT
+    kind: ethereum/contract
+    network: sepolia
+    source:
+      abi: S2NFT
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      file: ./src/s2nft.ts
+      entities:
+        - TokenInfo
+      abis:
+        - name: S2NFT
+          file: ./abis/S2NFT.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTokenTransfer
+        
